@@ -1,6 +1,6 @@
 ## Volume Plugins Demo
 
-Using Docker 1.8 Volume Plugins with Compose and Flocker.
+Migrating Docker data volume using new Docker 1.8 Volumes Plugin
 
 ### The problem
 
