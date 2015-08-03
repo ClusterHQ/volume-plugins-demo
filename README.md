@@ -20,7 +20,7 @@ However - we also need to move the **data** otherwise disaster will strike and a
 
 ### The solution
 
-Using Docker 1.8 plugins together with Flocker - we are able to migrate the containers **AND** the data using nothing other than `docker-compose` commands.
+Using [Docker 1.8 plugins](https://github.com/docker/docker/blob/master/docs/extend/plugins.md) together with [Flocker](https://clusterhq.com/) - we are able to migrate the containers **AND** the data using nothing other than `docker-compose` commands.
 
 This demonstrates how the phrase:
 
