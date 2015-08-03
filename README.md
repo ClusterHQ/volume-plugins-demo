@@ -26,7 +26,7 @@ This demonstrates how the phrase:
 
 > batteries included but removable 
 
-Has become a reality and in the case of Volume drivers - have made it out of the `experimental` phase and into mainstream docker.
+has become a reality and in the case of volume drivers - have made it out of the `experimental` phase and into mainstream docker.
 
 We will use the [Flocker Plugin](https://github.com/clusterhq/flocker-docker-plugin) together with the new `--volume-driver` flag to migrate the database container and data as a single, atomic unit.
 
