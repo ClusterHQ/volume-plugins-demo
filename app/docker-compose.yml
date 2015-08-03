@@ -1,0 +1,13 @@
+web:
+  image: binocarlos/moby-counter:latest
+  environment:
+     - "USE_REDIS_HOST=redis"
+  links:
+    - redis
+  ports:
+    - "80:80"
+redis:
+  image: redis:latest
+  volume_driver: flocker
+  volumes:
+     - 'demo:/data'
