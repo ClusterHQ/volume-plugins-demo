@@ -20,7 +20,7 @@ However - we also need to move the **data** otherwise disaster will strike and a
 
 ### The solution
 
-Using the [Flocker](https://clusterhq.com/) [plugin for Docker](https://github.com/docker/docker/blob/master/docs/extend/plugins.md) we are able to migrate the containers **AND** the data using nothing other than `docker-compose` commands.
+Using the [Flocker](https://clusterhq.com/) and the [plugin for Docker](https://github.com/docker/docker/blob/master/docs/extend/plugins.md) we are able to migrate the containers **AND** the data using nothing other than `docker-compose` commands.
 
 This demonstrates how the phrase:
 
