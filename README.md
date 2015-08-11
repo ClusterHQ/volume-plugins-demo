@@ -2,6 +2,8 @@
 
 Migrating Docker data volume using new Docker 1.8 Volumes Plugin
 
+[![asciicast](https://asciinema.org/a/24835.png)](https://asciinema.org/a/24835)
+
 ### The problem
 
 You have just created an amazing new web application and are ready to show to world!  Because it is a small project with a limited budget, you decided to deploy it onto some modest servers and gather feedback before committing resources to more powerful servers.
