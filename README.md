@@ -36,6 +36,8 @@ First we will demonstrate some basic Docker CLI commands that make use of `--vol
 
 Then, we will use Docker Compose to spin up our application on the first node, create some data and then move it to the second node and witness Flocker migrating the data alongside the database container - all using nothing but `docker-compose`.
 
+![screen shot](https://raw.github.com/clusterhq/volume-plugins-demo/master/img/plugin-overview.png "fig 1. overview")
+
 ### Install
 
 First you need to install:
