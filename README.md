@@ -38,6 +38,8 @@ Then, we will use Docker Compose to spin up our application on the first node, c
 
 ![screen shot](https://raw.github.com/clusterhq/volume-plugins-demo/master/img/plugin-overview.png "fig 1. overview")
 
+*figure 1. An overview of how Docker and the Flocker plugin interact*
+
 ### Install
 
 First you need to install:
