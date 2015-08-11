@@ -140,6 +140,10 @@ http://172.16.78.250
 
 You should see a blank page - try clicking around to create some Moby Docks!
 
+![screen shot](https://raw.github.com/clusterhq/volume-plugins-demo/master/img/screenshot.png "fig 2. application in browser")
+
+*figure 2. A screenshot of the application running in a browser*
+
 ### Step 7: Stop the application on node1
 
 Next lets stop the application running on node1:
