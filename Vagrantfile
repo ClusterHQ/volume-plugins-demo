@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # these functions are all defined in 'scripts.rb'
-    node1.vm.provision :shell, inline: 
+    node1.vm.provision :shell, inline:
       create_zfs_pool() +
       add_vagrant_group() +
       install_ssh_keys() +
@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # these functions are all defined in 'scripts.rb'
-    node2.vm.provision :shell, inline: 
+    node2.vm.provision :shell, inline:
       create_zfs_pool() +
       add_vagrant_group() +
       install_ssh_keys() +
