@@ -3,6 +3,8 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
 load 'scripts.rb'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
