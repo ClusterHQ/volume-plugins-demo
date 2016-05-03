@@ -40,8 +40,8 @@ vagrant ssh node2 -c "sudo docker run -d \
     consul://172.16.78.250:8500"
 
 echo "Installing Swarm Agent on node1"
-vagrant ssh node2 -c "sudo docker rm -f swarm-agent1"
-vagrant ssh node2 -c "sudo docker run -d \
+vagrant ssh node1 -c "sudo docker rm -f swarm-agent1"
+vagrant ssh node1 -c "sudo docker run -d \
    --name=swarm-agent1 \
    --restart=always swarm:$SWARM_VERSION join \
    --advertise=172.16.78.250:2375 \
