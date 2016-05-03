@@ -29,6 +29,7 @@ vagrant up
 
 To install swarm
 ```
-sh swarm/ready-docker-for-swarm_win.sh
-sh swarm/ready-docker-for-swarm_win.sh
+./swarm/ready-docker-for-swarm_win.sh
+./swarm/install-docker-swarm_win.sh
+Done: Swarm available at tcp://172.16.78.250:3375
 ```
