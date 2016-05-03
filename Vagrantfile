@@ -13,8 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.scope = :box
   end
 
-  config.vm.box = "volume-plugins-demo-vagrant-ubuntu-v2"
-  config.vm.box_url = "http://storage.googleapis.com/experiments-clusterhq/vagrant-boxes/volume-plugins-demo-vagrant-ubuntu-v2.box"
+  config.vm.box = "volume-plugins-demo-vagrant-ubuntu-v3"
+  config.vm.box_url = "https://s3.amazonaws.com/clusterhq-public-vagrant/boxes/volume-plugins-demo-vagrant-ubuntu-v3.box"
 
   config.vm.define "node1" do |node1|
     node1.vm.network :private_network, :ip => "172.16.78.250"
@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       copy_agent_certs("node1") +
       flocker_control_config() +
       flocker_agent_config("172.16.78.250") +
-      flocker_plugin_config("172.16.78.250", "172.16.78.250")
+      flocker_plugin_config()
 
   end
 
@@ -50,7 +50,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       install_ssh_keys() +
       copy_agent_certs("node2") +
       flocker_agent_config("172.16.78.250") +
-      flocker_plugin_config("172.16.78.250", "172.16.78.251")
+      flocker_plugin_config()
 
   end
 

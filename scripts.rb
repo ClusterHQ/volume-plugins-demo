@@ -77,19 +77,8 @@ SCRIPT
     return $script
 end
 
-def flocker_plugin_config(control_ip, node_ip)
+def flocker_plugin_config()
     $script = <<SCRIPT
-cat <<EOF > /etc/init/flocker-docker-plugin.conf
-# flocker-plugin - flocker-docker-plugin job file
-
-description "Flocker Plugin service"
-author "ClusterHQ <support@clusterhq.com>"
-
-respawn
-env FLOCKER_CONTROL_SERVICE_BASE_URL=https://#{control_ip}:4523/v1
-env MY_NETWORK_IDENTITY=#{node_ip}
-exec /usr/local/bin/flocker-docker-plugin
-EOF
 service flocker-docker-plugin restart
 SCRIPT
     return $script
