@@ -79,6 +79,8 @@ end
 
 def flocker_plugin_config()
     $script = <<SCRIPT
+update-rc.d flocker-docker-plugin enable
+update-rc.d flocker-docker-plugin defaults
 service flocker-docker-plugin restart
 SCRIPT
     return $script

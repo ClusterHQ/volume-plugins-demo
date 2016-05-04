@@ -38,6 +38,9 @@ rm -rf /var/lib/docker/graphdriver
 service docker start
 sleep 5
 
+# Install FlockerCTL
+curl -sSL https://get.flocker.io |sh
+
 # pre-pull required docker images
 docker pull busybox:latest
 docker pull redis:latest
