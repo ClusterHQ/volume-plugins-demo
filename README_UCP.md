@@ -111,7 +111,93 @@ https://172.16.78.250/#/dashboard
 
 For better visuals for this demo, see the slides provided.
 
-# Demo 2 showing HA failover
+# Demo 2 running compose app with HA data
+
+1. Navigate to your UCP server in your web browser
+
+2. In the upper right corner click `admin` and choose `Profile`
+
+3. Click `Create a Client Bundle`
+
+4. Navigate to where the bundle was downloaded, and unzip the client bundle
+
+```
+$ cp ~/Downloads/ucp-bundle-admin.zip .
+$ unzip bundle.zip
+Archive:  bundle.zip
+extracting: ca.pem
+extracting: cert.pem
+extracting: key.pem
+extracting: cert.pub
+extracting: env.sh
+```
+
+5. Change into the directory that was created when the bundle was unzipped
+
+6. Execute the `env.sh` script to set the appropriate environment variables for         your UCP deployment
+
+```
+$ source env.sh
+```
+
+7. Go to the `app/` folder.
+```
+$ cd app/
+$ ls
+docker-compose.yml
+```
+
+8. Run the app.
+```
+run the app
+$ docker-compose -f docker-compose-node2.yml up -d
+Creating app_redis_1
+Creating app_web_1
+```
+
+9. Navigate to https://172.16.78.250/#/applications to see your app. Click on "show containers" next to the app.
+
+10. See which node your web interface is running on
+```
+$ docker-compose ps
+   Name                  Command               State            Ports
+-------------------------------------------------------------------------------
+app_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp
+app_web_1     node index.js                    Up      172.16.78.251:80->80/tcp
+```
+
+11. Navigate to http://172.16.78.251 and click the page to add docker images.
+
+12. See node2 is running the containers.
+```
+$ docker ps
+CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS                      NAMES
+5e913397fc51        binocarlos/moby-counter:latest   "node index.js"          About an hour ago   Up 25 seconds       172.16.78.251:80->80/tcp   node2/app_web_1
+6787fc5a1ef8        redis:latest                     "docker-entrypoint.sh"   About an hour ago   Up 25 seconds       6379/tcp                   node2/app_redis_1
+```
+
+13. Delete the app and restart it.
+```
+docker-compose -f docker-compose-node2.yml stop
+docker-compose -f docker-compose-node2.yml rm -f
+```
+
+14. Redeploy the app on `node1`.
+
+Bring up the app
+```
+docker-compose -f docker-compose-node1.yml up -d
+```
+
+See that is on `node1` now. Visit http://172.16.78.250/, you should see the same images as before. Data movement!
+```
+$ docker ps
+CONTAINER ID        IMAGE                            COMMAND                  CREATED              STATUS              PORTS                      NAMES
+52419b5570c0        binocarlos/moby-counter:latest   "node index.js"          About a minute ago   Up About a minute   172.16.78.250:80->80/tcp   node1/app_web_1
+49b57f562c41        redis:latest                     "docker-entrypoint.sh"   About a minute ago   Up About a minute   6379/tcp                   node1/app_redis_1
+```
+
+# Demo 3 showing HA data movement with Redis
 
 1. Navigate to your UCP server in your web browser
 	
