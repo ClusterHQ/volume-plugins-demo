@@ -98,20 +98,11 @@ node2$ docker run --rm -it --name ucp \
 After this completes, navigate back to the dashboard and verify you have 2 nodes.
 https://172.16.78.250/#/dashboard
 
+# Demos
 
-# Demo 1 showing data movement across nodes
+## Before you run the demos
 
-1. Navigate to the dashboard and click the Volume tab from the menu
-2. Create a volume with the inputs of `flocker` as the driver and `size=10G` as the option. Use whatever name you would like.
-3. Navigate to the Containers tab from the dashboar menu
-4. Create a container with the image `busybox` and config `touch /data/Hello` for the command and the name of your volume mapped to `/data` in Volumes. Set the constraint to `node==node1` and run the container.
-5. Delete that container after it runs
-6. Create another container with the image `busybox` and config `ls /data/` for the command and the name of your volume mapped to `/data` in Volumes. Set the constraint to `node==node2` so it runs on a different host and run the container. Click on container after it runs and click again on the Logs tab for that container, you should see `Hello` in the output showing that data has moved from one host to the other.
-7. Delete that container.
-
-For better visuals for this demo, see the slides provided.
-
-# Demo 2 running compose app with HA data
+You may want to install the CLI access to talk to your Swarm cluster, if so, here is how.
 
 1. Navigate to your UCP server in your web browser
 
@@ -139,6 +130,72 @@ extracting: env.sh
 ```
 $ source env.sh
 ```
+
+7. Run `docker info` to examine the configuration of your Docker Swarm. Your output should show that you are managing the swarm vs. a single node.
+
+```
+$ docker info
+ Containers: 9
+ Running: 9
+ Paused: 0
+ Stopped: 0
+Images: 24
+Server Version: swarm/1.1.3
+Role: primary
+Strategy: spread
+Filters: health, port, dependency, affinity, constraint
+Nodes: 2
+ node1: 172.16.78.250:12376
+  └ Status: Healthy
+  └ Containers: 7
+  └ Reserved CPUs: 0 / 1
+  └ Reserved Memory: 0 B / 1.536 GiB
+  └ Labels: executiondriver=, kernelversion=3.13.0-85-generic, operatingsystem=Ubuntu 14.04.4 LTS, storagedriver=aufs
+  └ Error: (none)
+  └ UpdatedAt: 2016-05-03T19:46:20Z
+ node2: 172.16.78.251:12376
+  └ Status: Healthy
+  └ Containers: 2
+  └ Reserved CPUs: 0 / 1
+  └ Reserved Memory: 0 B / 1.536 GiB
+  └ Labels: executiondriver=, kernelversion=3.13.0-85-generic, operatingsystem=Ubuntu 14.04.4 LTS, storagedriver=aufs
+  └ Error: (none)
+  └ UpdatedAt: 2016-05-03T19:46:06Z
+Cluster Managers: 1
+ 172.16.78.250: Healthy
+  └ Orca Controller: https://172.16.78.250:443
+  └ Swarm Manager: tcp://172.16.78.250:2376
+  └ KV: etcd://172.16.78.250:12379
+Plugins:
+ Volume:
+ Network:
+Kernel Version: 3.13.0-85-generic
+Operating System: linux
+Architecture: amd64
+CPUs: 2
+Total Memory: 3.072 GiB
+Name: ucp-controller-node1
+ID: N7UO:47D6:LJTN:XMME:7MK4:4CG7:WBXO:F7GX:ZJQR:PD6U:WXPX:FBPS
+Labels:
+ com.docker.ucp.license_key=kC4fTVzI1IW6w6SmaYALxRwL506maBBJyqz_QzDIvC65
+ com.docker.ucp.license_max_engines=10
+ com.docker.ucp.license_expires=2016-06-02 17:25:40 +0000 UTC
+```
+
+## Demo 1 showing data movement across nodes
+
+1. Navigate to the dashboard and click the Volume tab from the menu
+2. Create a volume with the inputs of `flocker` as the driver and `size=10G` as the option. Use whatever name you would like.
+3. Navigate to the Containers tab from the dashboar menu
+4. Create a container with the image `busybox` and config `touch /data/Hello` for the command and the name of your volume mapped to `/data` in Volumes. Set the constraint to `node==node1` and run the container.
+5. Delete that container after it runs
+6. Create another container with the image `busybox` and config `ls /data/` for the command and the name of your volume mapped to `/data` in Volumes. Set the constraint to `node==node2` so it runs on a different host and run the container. Click on container after it runs and click again on the Logs tab for that container, you should see `Hello` in the output showing that data has moved from one host to the other.
+7. Delete that container.
+
+For better visuals for this demo, see the slides provided.
+
+## Demo 2 running compose app with HA data
+
 
 7. Go to the `app/` folder.
 ```
@@ -197,85 +254,7 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 49b57f562c41        redis:latest                     "docker-entrypoint.sh"   About a minute ago   Up About a minute   6379/tcp                   node1/app_redis_1
 ```
 
-# Demo 3 showing HA data movement with Redis
-
-1. Navigate to your UCP server in your web browser
-	
-2. In the upper right corner click `admin` and choose `Profile`
-
-3. Click `Create a Client Bundle`
-		
-4. Navigate to where the bundle was downloaded, and unzip the client bundle
-
-```		
-$ cp ~/Downloads/ucp-bundle-admin.zip . 
-$ unzip bundle.zip
-Archive:  bundle.zip
-extracting: ca.pem
-extracting: cert.pem
-extracting: key.pem
-extracting: cert.pub
-extracting: env.sh
-```
-		
-5. Change into the directory that was created when the bundle was unzipped
-
-6. Execute the `env.sh` script to set the appropriate environment variables for 	your UCP deployment
-
-```
-$ source env.sh
-```
-
-9. Run `docker info` to examine the configuration of your Docker Swarm. Your output should show that you are managing the swarm vs. a single node. 
-
-```
-$ docker info
- Containers: 9
- Running: 9
- Paused: 0
- Stopped: 0
-Images: 24
-Server Version: swarm/1.1.3
-Role: primary
-Strategy: spread
-Filters: health, port, dependency, affinity, constraint
-Nodes: 2
- node1: 172.16.78.250:12376
-  └ Status: Healthy
-  └ Containers: 7
-  └ Reserved CPUs: 0 / 1
-  └ Reserved Memory: 0 B / 1.536 GiB
-  └ Labels: executiondriver=, kernelversion=3.13.0-85-generic, operatingsystem=Ubuntu 14.04.4 LTS, storagedriver=aufs
-  └ Error: (none)
-  └ UpdatedAt: 2016-05-03T19:46:20Z
- node2: 172.16.78.251:12376
-  └ Status: Healthy
-  └ Containers: 2
-  └ Reserved CPUs: 0 / 1
-  └ Reserved Memory: 0 B / 1.536 GiB
-  └ Labels: executiondriver=, kernelversion=3.13.0-85-generic, operatingsystem=Ubuntu 14.04.4 LTS, storagedriver=aufs
-  └ Error: (none)
-  └ UpdatedAt: 2016-05-03T19:46:06Z
-Cluster Managers: 1
- 172.16.78.250: Healthy
-  └ Orca Controller: https://172.16.78.250:443
-  └ Swarm Manager: tcp://172.16.78.250:2376
-  └ KV: etcd://172.16.78.250:12379
-Plugins:
- Volume:
- Network:
-Kernel Version: 3.13.0-85-generic
-Operating System: linux
-Architecture: amd64
-CPUs: 2
-Total Memory: 3.072 GiB
-Name: ucp-controller-node1
-ID: N7UO:47D6:LJTN:XMME:7MK4:4CG7:WBXO:F7GX:ZJQR:PD6U:WXPX:FBPS
-Labels:
- com.docker.ucp.license_key=kC4fTVzI1IW6w6SmaYALxRwL506maBBJyqz_QzDIvC65
- com.docker.ucp.license_max_engines=10
- com.docker.ucp.license_expires=2016-06-02 17:25:40 +0000 UTC
-```
+## Demo 3 showing HA data movement with Redis
 
 Start a redis server with rescheduling enabled.
 ```
