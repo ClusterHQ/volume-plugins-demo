@@ -257,6 +257,8 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 
 ## Demo 3 showing HA data movement with Redis
 
+> Note, this demo assumes you have the CLI portion setup and you are able to run docker <cmds> against your UCP cluster. 
+
 Start a redis server with rescheduling enabled.
 ```
 $ docker run -d --name=redis-server \
