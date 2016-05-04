@@ -1,6 +1,7 @@
 ## Volume Plugins Demo
 
-Migrating Docker data volume using new Docker 1.8 Volumes Plugin
+Migrating Docker data volume using Docker 1.11 and Docker volumes plugin. 
+Optionally this repo provides scripts and READMEs for adding Swarm or UCP, see `README_SWARM.md` or `README_UCP.md`.
 
 [![asciicast](https://asciinema.org/a/24835.png)](https://asciinema.org/a/24835)
 
@@ -70,27 +71,24 @@ We are then going to confirm that we are actually running Docker 1.8 and that it
 ```bash
 $ vagrant ssh node1
 vagrant@node1:~$ docker version
-
 Client:
- Version:      1.8.0-dev
- API version:  1.21
- Go version:   go1.4.2
- Git commit:   1027247
- Built:        Mon Aug  3 18:04:07 UTC 2015
+ Version:      1.11.1
+ API version:  1.23
+ Go version:   go1.5.4
+ Git commit:   5604cbe
+ Built:        Tue Apr 26 23:30:23 2016
  OS/Arch:      linux/amd64
 
 Server:
- Version:      1.8.0-dev
- API version:  1.21
- Go version:   go1.4.2
- Git commit:   1027247
- Built:        Mon Aug  3 18:04:07 UTC 2015
+ Version:      1.11.1
+ API version:  1.23
+ Go version:   go1.5.4
+ Git commit:   5604cbe
+ Built:        Tue Apr 26 23:30:23 2016
  OS/Arch:      linux/amd64
 
 vagrant@node1:~$ exit
 ```
-
-NOTE - the version of this binary is `1.8.0-dev` because this blog post was put together a few days before the official release.
 
 ### Step 3: Write some data to node1
 
@@ -193,6 +191,14 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 
 vagrant@node2:~$ exit
 ```
+
+## Swarm
+
+see [README_SWARM.md](README_SWARM.md)
+
+## UCP
+
+see [README_UCP.md](README_UCP.md)
 
 ## Conclusion
 
