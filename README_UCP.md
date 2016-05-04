@@ -196,15 +196,16 @@ For better visuals for this demo, see the slides provided.
 
 ## Demo 2 running compose app with HA data
 
+> Note, this demo assumes you have the CLI portion setup and you are able to run `docker <cmds>` against your UCP cluster.
 
-7. Go to the `app/` folder.
+1. Go to the `app/` folder.
 ```
 $ cd app/
 $ ls
 docker-compose.yml
 ```
 
-8. Run the app.
+2. Run the app.
 ```
 run the app
 $ docker-compose -f docker-compose-node2.yml up -d
@@ -212,9 +213,9 @@ Creating app_redis_1
 Creating app_web_1
 ```
 
-9. Navigate to https://172.16.78.250/#/applications to see your app. Click on "show containers" next to the app.
+3. Navigate to https://172.16.78.250/#/applications to see your app. Click on "show containers" next to the app.
 
-10. See which node your web interface is running on
+4. See which node your web interface is running on
 ```
 $ docker-compose ps
    Name                  Command               State            Ports
@@ -223,9 +224,9 @@ app_redis_1   docker-entrypoint.sh redis ...   Up      6379/tcp
 app_web_1     node index.js                    Up      172.16.78.251:80->80/tcp
 ```
 
-11. Navigate to http://172.16.78.251 and click the page to add docker images.
+5. Navigate to http://172.16.78.251 and click the page to add docker images.
 
-12. See node2 is running the containers.
+6. See node2 is running the containers.
 ```
 $ docker ps
 CONTAINER ID        IMAGE                            COMMAND                  CREATED             STATUS              PORTS                      NAMES
@@ -233,13 +234,13 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 6787fc5a1ef8        redis:latest                     "docker-entrypoint.sh"   About an hour ago   Up 25 seconds       6379/tcp                   node2/app_redis_1
 ```
 
-13. Delete the app and restart it.
+7. Delete the app and remove the containers.
 ```
 docker-compose -f docker-compose-node2.yml stop
 docker-compose -f docker-compose-node2.yml rm -f
 ```
 
-14. Redeploy the app on `node1`.
+8. Redeploy the app on `node1`.
 
 Bring up the app
 ```
