@@ -4,6 +4,18 @@ usermod -a -G docker vagrant
 SCRIPT
 end
 
+def setup_flockerctl_env()
+    $script = <<SCRIPT
+mkdir -p /home/vagrant
+cat <<EOF > /home/vagrant/.bashrc
+export FLOCKER_CERTS_PATH=/etc/flocker
+export FLOCKER_USER=user
+export FLOCKER_CONTROL_SERVICE=172.16.78.250
+EOF
+SCRIPT
+    return $script
+end
+
 def create_zfs_pool()
     $script = <<SCRIPT
 mkdir -p /var/opt/flocker
@@ -40,6 +52,8 @@ cp /vagrant/bakedcerts/#{hostname}.crt /etc/flocker/node.crt
 cp /vagrant/bakedcerts/#{hostname}.key /etc/flocker/node.key
 cp /vagrant/bakedcerts/plugin.crt /etc/flocker/plugin.crt
 cp /vagrant/bakedcerts/plugin.key /etc/flocker/plugin.key
+cp /vagrant/bakedcerts/user.crt /etc/flocker/user.crt
+cp /vagrant/bakedcerts/user.key /etc/flocker/user.key
 SCRIPT
     return $script
 end

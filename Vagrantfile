@@ -32,7 +32,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       copy_agent_certs("node1") +
       flocker_control_config() +
       flocker_agent_config("172.16.78.250") +
-      flocker_plugin_config()
+      flocker_plugin_config() +
+      setup_flockerctl_env()
 
   end
 
@@ -50,7 +51,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       install_ssh_keys() +
       copy_agent_certs("node2") +
       flocker_agent_config("172.16.78.250") +
-      flocker_plugin_config()
+      flocker_plugin_config() +
+      setup_flockerctl_env()
 
   end
 
