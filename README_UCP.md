@@ -49,13 +49,12 @@ Install UCP
 
 **Node1**
 ```
-$ vagrant ssh node1
-node1$ docker run --rm -it --name ucp \
+$ vagrant ssh node1 -c "docker run --rm -it --name ucp \
 -v /var/run/docker.sock:/var/run/docker.sock \
 docker/ucp install \
 --fresh-install \
 --host-address=172.16.78.250 \
---san node1
+--san node1"
 ```
 
 Once, complete, navigate to https://172.16.78.250/#/login
@@ -69,11 +68,12 @@ Next,output the fingerprint for your Controller
 > Note: copy the output to your clipboard
 
 ```
-node1$ docker run --rm \
+$ vagrant ssh node1 -c "docker run --rm \
     --name ucp \
     -v /var/run/docker.sock:/var/run/docker.sock \
     docker/ucp \
-    fingerprint
+    fingerprint"
+    
 SHA1 Fingerprint=DA:C3:17:13:9B:50:A5:87:AE:D5:D7:46:CE:61:38:DA:2C:04:6B:9A
 ```
 
@@ -82,9 +82,7 @@ SHA1 Fingerprint=DA:C3:17:13:9B:50:A5:87:AE:D5:D7:46:CE:61:38:DA:2C:04:6B:9A
 Next, on node2 we can add the node to our UCP cluster.
 
 ```
-$ vagrant ssh node2
-
-node2$ docker run --rm -it --name ucp \
+$ vagrant ssh node2 -c "docker run --rm -it --name ucp \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -e UCP_ADMIN_USER=admin -e UCP_ADMIN_PASSWORD=orca \
   docker/ucp join \
@@ -92,7 +90,7 @@ node2$ docker run --rm -it --name ucp \
   --san node2 \
   --host-address 172.16.78.251 \
   --url https://172.16.78.250 \
-  --fingerprint <SHA1 Fingerprint you copied before>
+  --fingerprint <SHA1 Fingerprint you copied before>"
 ```
 
 After this completes, navigate back to the dashboard and verify you have 2 nodes.
