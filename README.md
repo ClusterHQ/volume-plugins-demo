@@ -200,6 +200,15 @@ see [README_SWARM.md](README_SWARM.md)
 
 see [README_UCP.md](README_UCP.md)
 
+## Using `flockerctl`
+
+`flockerctl` is available on each flocker node. Here is an example of how to use it.
+```
+$:-> vagrant ssh node1 -c "flockerctl ls"
+DATASET                                SIZE     METADATA      STATUS         SERVER
+9b5a81a1-357a-4b2a-9a74-12c5d195093b   75.00G   name=zfsvol   attached ✅   c109798f (172.16.78.251)
+```
+
 ## Conclusion
 
 Using this very basic demo, we were able to show that the plugin mechanism in Docker 1.8 is able to integrate with both Flocker and Docker Compose allowing us to migrate a stateful web application from one server to another.

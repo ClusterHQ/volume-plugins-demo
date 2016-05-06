@@ -45,5 +45,13 @@ curl -sSL https://get.flocker.io |sh
 docker pull busybox:latest
 docker pull redis:latest
 docker pull binocarlos/moby-counter:latest
-docker pull consul:latest
+docker pull progrium/consul:latest
 docker pull swarm:1.2.0
+docker pull docker/ucp-swarm:1.1.0
+docker pull docker/ucp-controller:1.1.0
+docker pull docker/ucp-auth:1.1.0
+docker pull docker/ucp-auth-store:1.1.0
+docker pull docker/ucp-proxy:1.1.0
+docker pull docker/ucp-cfssl:1.1.0
+docker pull docker/ucp-etcd:1.1.0
+

@@ -13,8 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.scope = :box
   end
 
-  config.vm.box = "volume-plugins-demo-vagrant-ubuntu-v4"
-  config.vm.box_url = "https://s3.amazonaws.com/clusterhq-public-vagrant/boxes/volume-plugins-demo-vagrant-ubuntu-v4.box"
+  config.vm.box = "volume-plugins-demo-vagrant-ubuntu-v5"
+  config.vm.box_url = "https://s3.amazonaws.com/clusterhq-public-vagrant/boxes/volume-plugins-demo-vagrant-ubuntu-v5.box"
 
   config.vm.define "node1" do |node1|
     node1.vm.network :private_network, :ip => "172.16.78.250"
