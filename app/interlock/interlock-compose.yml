@@ -1,0 +1,12 @@
+version: "2"
+services:
+  interlock2:
+    image: ehazlett/interlock:latest
+    command: "--swarm-url tcp://172.16.78.250:2376 --swarm-tls-ca-cert /data/ca.pem --swarm-tls-cert /data/cert.pem --swarm-tls-key /data/key.pem --plugin haproxy start"
+    restart: always
+    environment:
+      - "affinity:container==ucp-controller"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/lib/docker/volumes/ucp-node-certs/_data:/data:ro"
