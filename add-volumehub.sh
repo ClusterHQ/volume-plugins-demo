@@ -21,6 +21,6 @@ vagrant ssh node2 -c "sudo \
 vagrant ssh node1 -c "sudo \
   TARGET=agent-node \
   TOKEN=${TOKEN} \
-  sh -c 'curl -ssL https://get-volumehub.clusterhq.com/ |sh'
+  sh -c 'curl -ssL https://get-volumehub.clusterhq.com/ |sh'"
 
 echo "Done! Go to https://volumehub.clusterhq.com/"
