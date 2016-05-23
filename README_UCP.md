@@ -27,7 +27,7 @@ https://clusterhq.com/2016/03/09/fun-with-swarm-part1/
 
 Open a terminal and download the repo.
 ```
-$ git clone -b ucp https://github.com/wallnerryan/volume-plugins-demo
+$ git clone -b ucp https://github.com/ClusterHQ/volume-plugins-demo
 $ cd volume-plugins-demo
 ```
 

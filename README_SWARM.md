@@ -9,7 +9,7 @@ Install Vagrant
 ## How to install
 
 ```
-git clone -b swarm https://github.com/wallnerryan/volume-plugins-demo
+git clone -b ucp https://github.com/ClusterHQ/volume-plugins-demo
 cd volume-plugins-demo
 vagrant up
 ```
@@ -26,3 +26,5 @@ Use Swarm
 export DOCKER_HOST=tcp://172.16.78.250:3375
 docker info
 ```
+
+//TODO -  add examples for Swarm.
