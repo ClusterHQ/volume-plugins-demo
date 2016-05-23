@@ -36,7 +36,7 @@ Install the environment
 $ vagrant up
 ```
 
-After this completes, you will have two Flocker + Docker Nodes. Before you install UCP, lets get our Docker daemon ready for clustering.
+After this completes, you will have two Flocker + Docker Nodes. Before you install UCP, lets get our Docker daemon ready for clustering. This will make sure vagrant boxes have unique ID for each Docker daemon.
 
 ```
 $ ./swarm/ready-docker-for-swarm.sh
@@ -47,50 +47,39 @@ docker start/running, process 3280
 
 Install UCP
 
-**Node1**
 ```
 $ vagrant ssh node1 -c "docker run --rm -it --name ucp \
--v /var/run/docker.sock:/var/run/docker.sock \
-docker/ucp install \
---fresh-install \
---host-address=172.16.78.250 \
---san node1"
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   docker/ucp install \
+   --fresh-install \
+   --host-address=172.16.78.250 \
+   --san node1"
 ```
 
 Once, complete, navigate to https://172.16.78.250/#/login
 
 > Note: login with admin/orca
 
-Next, upload the `.lic` license you have for Docker UCP
+Next, upload the Docker `.lic` license you have for Docker UCP
 
-Next,output the fingerprint for your Controller
-
-> Note: copy the output to your clipboard
+Next, take note of the output from the previous command, there will be a fingerprint for your Controller, it looks something like the below. Copy this to your clipboard with CTRL-C or with the mouse to use in the next command.
 
 ```
-$ vagrant ssh node1 -c "docker run --rm \
-    --name ucp \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    docker/ucp \
-    fingerprint"
-    
 SHA1 Fingerprint=DA:C3:17:13:9B:50:A5:87:AE:D5:D7:46:CE:61:38:DA:2C:04:6B:9A
 ```
 
-**Node2**
-
-Next, on node2 we can add the node to our UCP cluster.
+Next, on node2 we can now add the node to our UCP cluster.
 
 ```
 $ vagrant ssh node2 -c "docker run --rm -it --name ucp \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -e UCP_ADMIN_USER=admin -e UCP_ADMIN_PASSWORD=orca \
-  docker/ucp join \
-  --fresh-install \
-  --san node2 \
-  --host-address 172.16.78.251 \
-  --url https://172.16.78.250 \
-  --fingerprint <SHA1 Fingerprint you copied before>"
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   -e UCP_ADMIN_USER=admin -e UCP_ADMIN_PASSWORD=orca \
+   docker/ucp join \
+   --fresh-install \
+   --san node2 \
+   --host-address 172.16.78.251 \
+   --url https://172.16.78.250 \
+   --fingerprint <SHA1 fingerprint you copied earlier>"
 ```
 
 After this completes, navigate back to the dashboard and verify you have 2 nodes.
