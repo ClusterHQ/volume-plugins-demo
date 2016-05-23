@@ -1,5 +1,5 @@
 
-# Volume Plugins with Flocker
+# Docker Volumes with Flocker
 
 ### How to use this repo.
 
@@ -7,15 +7,15 @@ This repository has various vagrant based excersized and workshops for using Doc
 
   If you want to learn the basics:
 
-     see [GETTING STARTED](README_ORIGINAL.md)
+  - see [GETTING STARTED](README_ORIGINAL.md)
 
   If you want to learn Docker volumes with Docker Swarm using Flocker
 
-     see [FLOCKER WITH SWARM](README_SWARM.md)
+  - see [FLOCKER WITH SWARM](README_SWARM.md)
 
   If you want to learn Docker volumes with Docker UCP using Flocker
 
-     see [FLOCKER WITH UCP](README_UCP.md)
+  - see [FLOCKER WITH UCP](README_UCP.md)
 
 
 #### Thanks
