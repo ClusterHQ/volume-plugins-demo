@@ -1,4 +1,6 @@
 #  Remove directory directory
+cd ~/dockercon-demo
+vagrant destroy -f
 cd ~/
 rm -rf  ~/dockercon-demo
 echo ""
