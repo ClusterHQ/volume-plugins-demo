@@ -10,7 +10,7 @@ web:
 redis:
   image: redis:latest
   environment:
-     - "constraint:node==node2"
+     - "constraint:node==node1"
   volume_driver: flocker
   volumes:
      - 'demo:/data'
