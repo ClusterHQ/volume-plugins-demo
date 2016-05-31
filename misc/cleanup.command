@@ -1,5 +1,5 @@
 #  Remove directory directory
-cd ~/dockercon-demo
+cd ~/dockercon-demo/volume-plugins-demo/
 vagrant destroy -f
 cd ~/
 rm -rf  ~/dockercon-demo

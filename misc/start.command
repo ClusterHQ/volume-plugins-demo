@@ -6,7 +6,11 @@ cd ~/dockercon-demo/
 git clone -b ucp https://github.com/ClusterHQ/volume-plugins-demo
 cd volume-plugins-demo
 
-echo "Ready to run 'vagrant up', enjoy the demo!"
+# start the env
+vagrant up
 
-# Start bash
+echo ""
+echo "Ready, enjoy the demo!"
+echo ""
+
 /bin/bash
