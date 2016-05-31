@@ -4,11 +4,11 @@ Based on: https://docs.docker.com/ucp/production-install/
 
 Helpful links
 =============
-https://clusterhq.com/2016/04/29/docker-boston-april/
-https://clusterhq.com/2016/03/10/fun-with-swarm-part2/
-https://clusterhq.com/2016/03/09/fun-with-swarm-part1/
+- https://clusterhq.com/2016/04/29/docker-boston-april/
+- https://clusterhq.com/2016/03/10/fun-with-swarm-part2/
+- https://clusterhq.com/2016/03/09/fun-with-swarm-part1/
 
-# Getting Started
+# Getting Started with Docker UCP
 
 - Sign up for [DockerHub](https://hub.docker.com/)
 - Once logged in, choose **Settings** (on top right), then click the Licenses Tab
@@ -23,7 +23,7 @@ https://clusterhq.com/2016/03/09/fun-with-swarm-part1/
 - Docker Toolbox
 - Vagrant
 
-## Getting started
+## Getting Started with the Demo
 
 Open a terminal and download the repo.
 ```
@@ -40,9 +40,6 @@ After this completes, you will have two Flocker + Docker Nodes. Before you insta
 
 ```
 $ ./swarm/ready-docker-for-swarm.sh
-Restarting the Docker Daemon on node2
-docker stop/waiting
-docker start/running, process 3280
 ```
 
 Install UCP
@@ -56,19 +53,18 @@ $ vagrant ssh node1 -c "docker run --rm -it --name ucp \
    --san node1"
 ```
 
-Once, complete, navigate to https://172.16.78.250/#/login
+Once, complete, navigate to: https://172.16.78.250/#/login and login with **admin/orca**.
 
-> Note: login with admin/orca
+Next, click upload license in the Docker UI and choose the location of the `.lic` license.
 
-Next, upload the Docker `.lic` license you have for Docker UCP
-
-Next, take note of the output from the previous command, there will be a fingerprint for your Controller, it looks something like the below. Copy this to your clipboard with CTRL-C or with the mouse to use in the next command.
+Next, take note of the output from the previous `ucp install` command, there will be a fingerprint output for your Controller, it looks something like the below example. Copy this to your clipboard with CTRL-C or with the mouse to use in the next command.
 
 ```
+# Example
 SHA1 Fingerprint=DA:C3:17:13:9B:50:A5:87:AE:D5:D7:46:CE:61:38:DA:2C:04:6B:9A
 ```
 
-Next, on node2 we can now add the node to our UCP cluster.
+Next, for the second node, `node2`, we can add it to the UCP cluster.
 
 ```
 $ vagrant ssh node2 -c "docker run --rm -it --name ucp \
@@ -79,7 +75,7 @@ $ vagrant ssh node2 -c "docker run --rm -it --name ucp \
    --san node2 \
    --host-address 172.16.78.251 \
    --url https://172.16.78.250 \
-   --fingerprint <SHA1 fingerprint you copied earlier>"
+   --fingerprint <SHA1 fingerprint copied previously>"
 ```
 
 After this completes, navigate back to the dashboard and verify you have 2 nodes.
