@@ -4,7 +4,11 @@ vagrant destroy -f
 cd ~/
 rm -rf  ~/dockercon-demo
 rm ~/Downloads/ucp-bundle*
-echo ""
-echo "All cleaned up, thank you!"
-echo "You may close this window now."
-echo ""
+
+#Close safari and Terminal
+pkill Safari
+pkill Terminal
+
+#Exit terminal
+osascript -e 'tell application "Terminal" to quit' &
+exit
