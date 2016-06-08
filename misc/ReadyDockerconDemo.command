@@ -2,10 +2,9 @@
 
 # Kill oldest processes of the two.
 # This should be ones open from previous demos
-pkill -o Safari
-rm -rf ~/Library/Saved\ Application\ State/com.apple.Safari.savedState
-rm ~/Library/Safari/LastSession.plist
-
+pkill -o firefox
+rm -rf ~/Library/Caches/Firefox/Profiles/qn53jin6.default/startupCache
+rm -rf ~/Library/Caches/Firefox/Profiles/qn53jin6.default/cache2
 osascript -e 'tell application "Terminal"' -e 'set mainID to id of front window' -e 'close (every window whose id ≠ mainID)' -e 'end tell'
 
 
@@ -39,8 +38,8 @@ vagrant ssh node1 -c "docker run --rm -it --name ucp \
    --host-address=172.16.78.250 \
    --san node1"
 
-open -a "Safari" https://github.com/ClusterHQ/volume-plugins-demo/blob/ucp/README_UCP.md
-open -a "Safari" https://172.16.78.250:443 
+open -a "Firefox" https://github.com/ClusterHQ/volume-plugins-demo/blob/ucp/README_UCP.md
+open -a "Firefox" https://172.16.78.250:443 
 
 echo ""
 echo "*********************************************************************"
