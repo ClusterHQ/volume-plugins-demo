@@ -16,7 +16,7 @@ rm -rf  ~/dockercon-demo
 rm ~/Downloads/ucp-bundle*
 
 #Close safari and Terminal
-pkill Safari
+pkill firefox
 # *** END REMOVE AND DESTROY***
 
 # *** START NEW ENVIRONMENT ***
@@ -38,7 +38,7 @@ vagrant ssh node1 -c "docker run --rm -it --name ucp \
    --host-address=172.16.78.250 \
    --san node1"
 
-open -a "Firefox" https://github.com/ClusterHQ/volume-plugins-demo/blob/ucp/README_UCP.md
+open -a "Firefox" https://gist.github.com/wallnerryan/255bc1f68c9b76f641de48a5f2cf192e
 open -a "Firefox" https://172.16.78.250:443 
 
 echo ""
