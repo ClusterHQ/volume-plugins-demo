@@ -39,7 +39,7 @@ vagrant ssh node1 -c "docker run --rm -it --name ucp \
    --san node1"
 
 open -a "Firefox" https://gist.github.com/wallnerryan/255bc1f68c9b76f641de48a5f2cf192e
-open -a "Firefox" https://172.16.78.250:443 
+open -a "Firefox" https://node1:443 
 
 echo ""
 echo "*********************************************************************"

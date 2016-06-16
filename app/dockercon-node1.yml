@@ -1,16 +1,20 @@
-web:
-  image: clusterhq/moby-counter:dcsea
-  environment:
-     - "USE_REDIS_HOST=redis"
-     - "affinity:container==app_redis_1"
-  links:
-    - redis
-  ports:
-    - "80:80"
-redis:
-  image: redis:latest
-  environment:
-     - "constraint:node==node1"
-  volume_driver: flocker
-  volumes:
-     - 'demo:/data'
+version: '2'
+volumes:
+  demo:
+    driver: flocker
+services:
+  web:
+    image: clusterhq/moby-counter:dcsea
+    environment:
+       - "USE_REDIS_HOST=redis"
+       - "affinity:container==app_redis_1"
+    links:
+      - redis
+    ports:
+      - "80:80"
+  redis:
+    image: redis:latest
+    environment:
+       - "constraint:node==node1"
+    volumes:
+       - 'demo:/data'
