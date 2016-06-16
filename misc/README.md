@@ -1,7 +1,7 @@
 
 #Pre-reqs
 
-- Safari
+- Mozilla Firefox
 - Vagrant 1.7.4
 - VirtualBox 5.0.16
 
